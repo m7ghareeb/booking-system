@@ -1,7 +1,22 @@
 <?php
 
+use App\Models\Employee;
+use App\Models\Service;
+use App\Services\ScheduleAvailabilityService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
+
+Route::get('/test', function () {
+    $employee = Employee::find(1);
+    $service = Service::find(1);
+
+    $availablity = (new ScheduleAvailabilityService($employee, $service))
+        ->forPeriod(
+            Carbon::now()->startOfDay(),
+            Carbon::now()->addMonth()->endOfDay()
+        );
+});
 
 Route::inertia('/', 'Welcome', [
     'canRegister' => Features::enabled(Features::registration()),
