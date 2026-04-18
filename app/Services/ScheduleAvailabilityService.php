@@ -34,9 +34,7 @@ class ScheduleAvailabilityService
                 $this->excludeTimePassedToday();
             });
 
-        foreach ($this->periods as $period) {
-            dump($period->asString());
-        }
+        return $this->periods;
     }
 
     protected function addAvailabilityFromSchedule(Carbon $date)
@@ -82,7 +80,6 @@ class ScheduleAvailabilityService
                 Carbon::now()->startOfDay(),
                 Carbon::now()->endOfHour(),
                 Precision::MINUTE(),
-                Boundaries::EXCLUDE_END()
             )
         );
     }
