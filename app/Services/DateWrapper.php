@@ -5,7 +5,7 @@ namespace App\Services;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
-class Date
+class DateWrapper
 {
     public Collection $slots;
 

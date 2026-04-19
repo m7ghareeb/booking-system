@@ -17,9 +17,9 @@ class SlotRangeGenerator
         // For each day generate slots between start and end date
         foreach ($days as $day) {
             // Generate slots for the day
-            $date = new Date($day);
+            $date = new DateWrapper($day);
             // Generate times between start and end date with the given interval
-            $times = CarbonPeriod::create($day->startOfDay(), $intervalInMinutes . ' minutes', $day->copy()->endOfDay());
+            $times = CarbonPeriod::create($day->copy()->startOfDay(), $intervalInMinutes . ' minutes', $day->copy()->endOfDay());
             // For each time generate a slot and add it to the date
             foreach ($times as $time) {
                 // Generate a slot for the time
