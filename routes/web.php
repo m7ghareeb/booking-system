@@ -1,34 +1,32 @@
 <?php
 
-use App\Models\Employee;
-use App\Models\Service;
-use App\Services\ServiceSlotAvailability;
-use Carbon\Carbon;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
 
-Carbon::setTestNow(Carbon::now()->setTimeFromTimeString('17:00'));
+Route::get('/', HomeController::class)->name('home');
 
-Route::get('/test', function () {
+// Carbon::setTestNow(Carbon::now()->setTimeFromTimeString('17:00'));
 
-    $employees = Employee::get();
-    $service = Service::find(1);
+// Route::get('/test', function () {
 
-    $availablity = (new ServiceSlotAvailability($employees, $service))
-        ->forPeriod(
-            Carbon::now()->startOfDay(),
-            Carbon::now()->addDay()->endOfDay()
-        );
+//     $employees = Employee::get();
+//     $service = Service::find(1);
 
-    dd($availablity->firstAvailableDate());
-});
+//     $availablity = (new ServiceSlotAvailability($employees, $service))
+//         ->forPeriod(
+//             Carbon::now()->startOfDay(),
+//             Carbon::now()->addDay()->endOfDay()
+//         );
 
-Route::inertia('/', 'Welcome', [
-    'canRegister' => Features::enabled(Features::registration()),
-])->name('home');
+//     dd($availablity->firstAvailableDate());
+// });
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'Dashboard')->name('dashboard');
-});
+// Route::inertia('/', 'Welcome', [
+//     'canRegister' => Features::enabled(Features::registration()),
+// ])->name('home');
 
-require __DIR__ . '/settings.php';
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+// });
+
+// require __DIR__ . '/settings.php';
