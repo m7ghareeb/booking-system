@@ -9,20 +9,25 @@ class SlotRangeGenerator
 {
     public function __construct(protected Carbon $startAt, protected Carbon $endAt) {}
 
+    /**
+     * Generate a collection of DateWrappers, each containing a range of timeslots
+     * spaced by the given interval in minutes, covering the period between
+     * $this->startAt and $this->endAt.
+     *
+     * @param  int  $intervalInMinutes  The interval in minutes between each timeslot
+     * @return Collection<DateWrapper>
+     */
     public function generate(int $intervalInMinutes)
     {
         $collection = collect();
-        // Generate days between start and end date
+
         $days = CarbonPeriod::create($this->startAt, '1 day', $this->endAt);
-        // For each day generate slots between start and end date
+
         foreach ($days as $day) {
-            // Generate slots for the day
             $date = new DateWrapper($day);
-            // Generate times between start and end date with the given interval
             $times = CarbonPeriod::create($day->copy()->startOfDay(), $intervalInMinutes . ' minutes', $day->copy()->endOfDay());
-            // For each time generate a slot and add it to the date
+
             foreach ($times as $time) {
-                // Generate a slot for the time
                 $date->addSlot(new Slot($time));
             }
 
