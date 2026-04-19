@@ -4,7 +4,7 @@ use App\Models\Employee;
 use App\Models\Schedule;
 use App\Models\ScheduleExclusion;
 use App\Models\Service;
-use App\Services\ScheduleAvailabilityService;
+use App\Services\ScheduleAvailability;
 use Carbon\Carbon;
 use Spatie\Period\Period;
 
@@ -24,7 +24,7 @@ describe('Schedule Availability', function () {
             'duration' => 30,
         ]);
 
-        $availability = (new ScheduleAvailabilityService($employee, $service))
+        $availability = (new ScheduleAvailability($employee, $service))
             ->forPeriod(
                 Carbon::now()->startOfDay(),
                 Carbon::now()->endOfDay()
@@ -56,7 +56,7 @@ describe('Schedule Availability', function () {
             'duration' => 30,
         ]);
 
-        $availability = (new ScheduleAvailabilityService($employee, $service))
+        $availability = (new ScheduleAvailability($employee, $service))
             ->forPeriod(
                 Carbon::now()->startOfDay(),
                 Carbon::now()->addDay()->endOfDay()
@@ -107,7 +107,7 @@ describe('Schedule Availability', function () {
             'duration' => 30,
         ]);
 
-        $availability = (new ScheduleAvailabilityService($employee, $service))
+        $availability = (new ScheduleAvailability($employee, $service))
             ->forPeriod(
                 Carbon::now()->startOfDay(),
                 Carbon::now()->addDay()->endOfDay()
@@ -149,7 +149,7 @@ describe('Schedule Availability', function () {
             'duration' => 30,
         ]);
 
-        $availability = (new ScheduleAvailabilityService($employee, $service))
+        $availability = (new ScheduleAvailability($employee, $service))
             ->forPeriod(
                 Carbon::now()->startOfDay(),
                 Carbon::now()->endOfDay()

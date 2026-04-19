@@ -2,7 +2,8 @@
 
 use App\Models\Employee;
 use App\Models\Service;
-use App\Services\ScheduleAvailabilityService;
+use App\Services\ScheduleAvailability;
+use App\Services\ServiceSlotAvailability;
 use App\Services\SlotRangeGenerator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -12,18 +13,29 @@ Route::get('/test', function () {
     // $employee = Employee::find(1);
     // $service = Service::find(1);
 
-    // $availablity = (new ScheduleAvailabilityService($employee, $service))
+    // $availablity = (new ScheduleAvailability($employee, $service))
     //     ->forPeriod(
     //         Carbon::now()->startOfDay(),
     //         Carbon::now()->addMonth()->endOfDay()
     //     );
 
-    $genertor = (new SlotRangeGenerator(
-        Carbon::now()->startOfDay(),
-        Carbon::now()->addDay()->endOfDay()
-    ));
+    $employees = Employee::get();
+    $service = Service::find(1);
 
-    dd($genertor->generate(30));
+    $availablity = (new ServiceSlotAvailability($employees, $service))
+        ->forPeriod(
+            Carbon::now()->startOfDay(),
+            Carbon::now()->addDay()->endOfDay()
+        );
+
+    dd($availablity);
+
+    // $genertor = (new SlotRangeGenerator(
+    //     Carbon::now()->startOfDay(),
+    //     Carbon::now()->addDay()->endOfDay()
+    // ));
+
+    // dd($genertor->generate(30));
 });
 
 Route::inertia('/', 'Welcome', [

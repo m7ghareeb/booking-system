@@ -12,7 +12,7 @@ use Spatie\Period\Period;
 use Spatie\Period\PeriodCollection;
 use Spatie\Period\Precision;
 
-class ScheduleAvailabilityService
+class ScheduleAvailability
 {
     protected PeriodCollection $periods;
 
