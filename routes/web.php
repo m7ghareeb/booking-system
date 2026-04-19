@@ -2,22 +2,14 @@
 
 use App\Models\Employee;
 use App\Models\Service;
-use App\Services\ScheduleAvailability;
 use App\Services\ServiceSlotAvailability;
-use App\Services\SlotRangeGenerator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-Route::get('/test', function () {
-    // $employee = Employee::find(1);
-    // $service = Service::find(1);
+Carbon::setTestNow(Carbon::now()->setTimeFromTimeString('12:00'));
 
-    // $availablity = (new ScheduleAvailability($employee, $service))
-    //     ->forPeriod(
-    //         Carbon::now()->startOfDay(),
-    //         Carbon::now()->addMonth()->endOfDay()
-    //     );
+Route::get('/test', function () {
 
     $employees = Employee::get();
     $service = Service::find(1);
@@ -29,13 +21,6 @@ Route::get('/test', function () {
         );
 
     dd($availablity);
-
-    // $genertor = (new SlotRangeGenerator(
-    //     Carbon::now()->startOfDay(),
-    //     Carbon::now()->addDay()->endOfDay()
-    // ));
-
-    // dd($genertor->generate(30));
 });
 
 Route::inertia('/', 'Welcome', [
