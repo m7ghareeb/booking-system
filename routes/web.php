@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-Carbon::setTestNow(Carbon::now()->setTimeFromTimeString('12:00'));
+Carbon::setTestNow(Carbon::now()->setTimeFromTimeString('17:00'));
 
 Route::get('/test', function () {
 
@@ -20,7 +20,7 @@ Route::get('/test', function () {
             Carbon::now()->addDay()->endOfDay()
         );
 
-    dd($availablity);
+    dd($availablity->firstAvailableDate());
 });
 
 Route::inertia('/', 'Welcome', [
