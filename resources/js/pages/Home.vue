@@ -17,7 +17,7 @@ defineProps<{
         <div>
             <h1 class="text-xl font-medium">{{ __("choose a professional") }}</h1>
             <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mt-6">
-                <Link :href="route('employee.services', employee)" v-for="employee in employees" :key="employee.id"
+                <Link :href="route('employee.services', employee.slug)" v-for="employee in employees" :key="employee.id"
                     class="py-8 px-4 border border-slate-200 rounded-lg shadow-sm flex flex-col items-center justify-center text-center hover:bg-gray-50/75">
                     <img :src="employee.profile_photo_url" alt="" class="size-14 rounded-full mb-4">
                     <div class="text-sm font-medium mt-3 text-slate-600">{{ employee.name }}</div>

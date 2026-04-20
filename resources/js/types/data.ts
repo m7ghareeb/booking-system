@@ -1,9 +1,9 @@
 export type EmployeeData = {
-id: number;
-name: string;
-slug: string;
-profile_photo_url: string;
-services: Array<ServiceData>;
+id: number | null;
+name: string | null;
+slug: string | null;
+profile_photo_url: string | null;
+services: Array<ServiceData> | null;
 };
 export type ServiceData = {
 id: number;

@@ -15,7 +15,7 @@ defineProps<{
         <h2 class="text-xl font-medium mt-5">{{ __("now choose a service", { name: employee.name }) }}</h2>
         <div>
             <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mt-6">
-                <Service v-for="service in employee.services" :key="service.id" :service="service" />
+                <Service v-for="service in employee.services" :key="service.id" :service="service" :href="route('checkout', { service: service.slug, employee: employee.slug })" />
             </div>
         </div>
     </div>

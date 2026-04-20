@@ -15,13 +15,13 @@ class EmployeeData extends Data
      * @param  DataCollection<int, ServiceData>  $services
      */
     public function __construct(
-        public int $id,
-        public string $name,
-        public string $slug,
-        public string $profile_photo_url,
+        public ?int $id,
+        public ?string $name,
+        public ?string $slug,
+        public ?string $profile_photo_url,
 
         #[DataCollectionOf(ServiceData::class)]
-        public DataCollection $services,
+        public ?DataCollection $services,
     ) {}
 
     public static function fromModel(Employee $model): self
